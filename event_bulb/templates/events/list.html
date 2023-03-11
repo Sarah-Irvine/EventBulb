@@ -15,36 +15,20 @@
               <input type="checkbox" name="is_free" id="is_free" value="0" />
             </div>
             <div class="input-group">
-            </div>
-            <div class="input-group">
               <label for="title">Search:</label>
               <input type="text" name="title" id="title">
             </div>
           </div>
 
           <div>
-            <a href="{% url 'events_list' %}" >Clear</a>
+            <a href="{% url 'events_list' %}" class="button">Clear</a>
             <button type="submit" class="button gray">
             Filter
             </button>
           </div>
         </form>
       </section>
-      <ul class="events-list">
-        {% for event in events %}
-          <li class="card event">
-            <img class="event-image" src="{% static 'images/image_placeholder.jpg' %}" alt="">
-            <div class="event-info">
-              <h2>{{ event.title }}</h2>
-              <h3>{{ event.datetime }} | £{{ event.cost }}</h3>
-              <p>{{ event.description }}</p>
-            </div>
-            <div class="event-controls">
-              <a href="{% url 'events_details' event.id %}" class="button gray">Details</a>
-            </div>
-          </li>
-        {% endfor %}
-      </ul>
+      {% include 'partials/_events_list.html' with events=events %}
     </section>
   </main>
 {% endblock %}
